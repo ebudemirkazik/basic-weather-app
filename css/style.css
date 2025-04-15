@@ -12,6 +12,27 @@
     justify-content: center;
     align-items: center;
   }
+
+  body.acik {
+    background: linear-gradient(to top, #87ceeb, #ffffff);
+  }
+  
+  body.bulutlu {
+    background: linear-gradient(to top, #cfd9df, #e2ebf0);
+  }
+  
+  body.yagmurlu {
+    background: linear-gradient(to top, #3a3d40, #181719);
+    color: white;
+  }
+  
+  body.karlı {
+    background: linear-gradient(to top, #e6e9f0, #eef1f5);
+  }
+  
+  body.normal {
+    background: linear-gradient(to top, #74ebd5, #acb6e5);
+  }
   
   .container {
     background-color: white;
@@ -19,7 +40,7 @@
     border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     width: 90%;
-    max-width: 400px;
+    max-width: 450px;
     text-align: center;
   }
   
@@ -60,7 +81,7 @@
     font-weight: bold;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.5s;
     font-size: 15px;
   }
   
@@ -109,4 +130,51 @@
   
   .gizle {
     display: none;
+  }
+
+  .favoriler {
+    margin-top: 1.5rem;
+    padding: 20px;
+  }
+
+  #favorilereEkle {
+    max-width: 150px;
+    margin-bottom: 20px;
+    padding: 15px 10px;
+    border: none;
+    background-color: #30db94;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.4s;
+    font-size: 15px;
+    
+  }
+
+  #favorilereEkle:hover {
+    background-color: #12a568;
+    
+  }
+
+  .favoriler button:active {
+    transform: scale(0.97) translateY(2px);
+  }
+  
+  .favoriler ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .favoriler li {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #eee;
+    margin: 5px 0;
+    transition: background 0.3s;
+  }
+  
+  .favoriler li:hover {
+    background-color: #ccc;
   }
