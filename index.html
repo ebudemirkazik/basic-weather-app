@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hava Durumu Uygulaması</title>
+    <link rel="stylesheet" href="./css/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Hava Durumu</h1>
+
+      <div class="search-box">
+        <input type="text" id="sehir" placeholder="Şehir girin..." />
+        <button id="ara">Ara</button>
+        <button id="reset">Temizle</button>
+      </div>
+
+      <div class="hava-sonuc gizle" id="hava-sonuc">
+        <h2 id="sehir-adi">Şehir</h2>
+        <p id="sicaklik">Sıcaklık: --°C</p>
+        <p id="aciklama">Durum: --</p>
+        <p id="nem">Nem: --%</p>
+        <p id="ruzgar">Rüzgar: -- km/s</p>
+        <img id="hava-ikonu" src="" alt="" />
+      </div>
+
+      <p class="hata-mesaji" id="hata-mesaji"></p>
+    </div>
+
+    <script src="./js/script.js"></script>
+  </body>
+</html>
