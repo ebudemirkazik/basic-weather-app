@@ -27,13 +27,25 @@
 
       <div class="favoriler">
         <button id="favorilereEkle" class="favori-button">
-          ⭐ Favorilere Ekle
+          Favorilere Ekle
         </button>
-        <h3>Favori Şehirler</h3>
-        <ul id="favoriListe"></ul>
+        <!-- <h3>Favori Şehirler</h3>
+        <ul id="favoriListe"></ul> -->
       </div>
 
       <p class="hata-mesaji" id="hata-mesaji"></p>
+    </div>
+
+    <!-- ⭐ Modal Açma Butonu -->
+    <button id="favoriAc" class="modal-ac-button">⭐ Favoriler</button>
+
+    <!-- 🧾 Modal Panel -->
+    <div id="favoriModal" class="modal">
+      <div class="modal-icerik">
+        <span id="modalKapat" class="modal-kapat">&times;</span>
+        <h2>Favori Şehirler</h2>
+        <ul id="favoriListe"></ul>
+      </div>
     </div>
 
     <script src="./js/script.js"></script>

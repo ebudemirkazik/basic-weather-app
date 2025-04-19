@@ -1,3 +1,5 @@
+let sonVeriGecerliMi = false; // en başta başarısız say
+
 document.getElementById("sehir").addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     document.getElementById("ara").click(); // Butona tıklamış gibi yap
@@ -19,12 +21,14 @@ document.getElementById("ara").addEventListener("click", () => {
     fetch(url)
       .then((response) => {
         if (!response.ok) {
+          sonVeriGecerliMi = false;
           throw new Error("Şehir bulunamadı.");
         }
         return response.json();
       })
       .then((data) => {
         // DOM'a veri yazalım
+        sonVeriGecerliMi = true;
         document.getElementById("sehir-adi").textContent = data.name;
         document.getElementById(
           "sicaklik"
@@ -39,16 +43,11 @@ document.getElementById("ara").addEventListener("click", () => {
           "ruzgar"
         ).textContent = `Rüzgar: ${data.wind.speed} km/s`;
 
-        
-
-
         // Hava durumu simgesini ayarlayalım
         const iconCode = data.weather[0].icon;
         const iconUrl = `https://openweathermap.org/img/wn/${iconCode}@2x.png`;
         document.getElementById("hava-ikonu").src = iconUrl;
         document.getElementById("hava-ikonu").alt = data.weather[0].description;
-
-        
 
         // Hata mesajını temizle, sonucu göster
         document.getElementById("hata-mesaji").textContent = "";
@@ -72,14 +71,12 @@ document.getElementById("ara").addEventListener("click", () => {
         } else {
           body.classList.add("normal");
         }
-
       })
       .catch((error) => {
         console.error("Hata:", error);
         document.getElementById("hata-mesaji").textContent =
           "Şehir bulunamadı veya bağlantı hatası.";
         document.getElementById("hava-sonuc").classList.add("gizle");
-
       });
   }
 
@@ -94,29 +91,68 @@ document.getElementById("reset").addEventListener("click", () => {
 // Favori şehirleri tut
 let favoriler = JSON.parse(localStorage.getItem("favoriler")) || [];
 
+// Buton ile favoriye ekle
+document.getElementById("favorilereEkle").addEventListener("click", () => {
+  const sehir = document.getElementById("sehir-adi").textContent;
+
+  if (!sonVeriGecerliMi) {
+    alert("Geçerli bir şehir araması yapmadan favorilere ekleyemezsiniz.");
+    return;
+  }
+
+  if (!favoriler.includes(sehir)) {
+    favoriler.push(sehir);
+    localStorage.setItem("favoriler", JSON.stringify(favoriler));
+    favoriListeyiGoster();
+  }
+});
+
 // Favori listeyi güncelle
 function favoriListeyiGoster() {
   const liste = document.getElementById("favoriListe");
   liste.innerHTML = "";
 
-  favoriler.forEach(sehir => {
+  favoriler.forEach((sehir) => {
     const li = document.createElement("li");
     li.textContent = sehir;
+
     li.addEventListener("click", () => {
       document.getElementById("sehir").value = sehir;
       document.getElementById("ara").click(); // otomatik arama
     });
+
+    // 🗑️ Sil butonu oluştur
+    const silButonu = document.createElement("button");
+    silButonu.textContent = "🗑️";
+    silButonu.style.marginLeft = "10px";
+    silButonu.addEventListener("click", (event) => {
+      event.stopPropagation(); // li tıklamasını engelle
+      favoriler = favoriler.filter((item) => item !== sehir);
+      localStorage.setItem("favoriler", JSON.stringify(favoriler));
+      favoriListeyiGoster();
+    });
+
+    li.appendChild(silButonu);
     liste.appendChild(li);
   });
 }
 
-// Buton ile favoriye ekle
-document.getElementById("favorilereEkle").addEventListener("click", () => {
-  const sehir = document.getElementById("sehir-adi").textContent;
-  if (!favoriler.includes(sehir)) {
-    favoriler.push(sehir);
-    localStorage.setItem("favoriler", JSON.stringify(favoriler));
-    favoriListeyiGoster();
+const modal = document.getElementById("favoriModal");
+const modalAc = document.getElementById("favoriAc");
+const modalKapat = document.getElementById("modalKapat");
+
+modalAc.addEventListener("click", () => {
+  modal.classList.add("aktif");
+});
+
+modalKapat.addEventListener("click", () => {
+  modal.classList.remove("aktif");
+});
+
+// Escape tuşu ile modal kapansın
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    modal.classList.remove("aktif");
   }
 });
 

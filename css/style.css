@@ -13,6 +13,10 @@
     align-items: center;
   }
 
+  body .kara {
+    background-color: #000000;
+  }
+
   body.acik {
     background: linear-gradient(to top, #87ceeb, #ffffff);
   }
@@ -33,6 +37,7 @@
   body.normal {
     background: linear-gradient(to top, #74ebd5, #acb6e5);
   }
+  
   
   .container {
     background-color: white;
@@ -84,9 +89,29 @@
     transition: background 0.5s;
     font-size: 15px;
   }
+
+  #favori-reset {
+    padding: 15px 15px;
+    border: none;
+    background-color: #4ea8de;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.5s;
+    font-size: 15px;
+  }
+
+  #favori-reset:hover {
+    background-color: #3277a8;
+  }
   
   .search-box button:hover {
     background-color: #3277a8;
+  }
+
+  #favori-reset:active {
+    transform: scale(0.97) translateY(2px);
   }
 
   .search-box button:active {
@@ -140,7 +165,7 @@
   #favorilereEkle {
     max-width: 150px;
     margin-bottom: 20px;
-    padding: 15px 10px;
+    padding: 15px 15px;
     border: none;
     background-color: #30db94;
     color: white;
@@ -149,12 +174,10 @@
     cursor: pointer;
     transition: background 0.4s;
     font-size: 15px;
-    
   }
 
   #favorilereEkle:hover {
     background-color: #12a568;
-    
   }
 
   .favoriler button:active {
@@ -177,4 +200,119 @@
   
   .favoriler li:hover {
     background-color: #ccc;
+  }
+  .favoriler li button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+
+
+  /* Modal arka plan */
+.modal {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background-color: #ffffff;
+    box-shadow: -4px 0 15px rgba(0, 0, 0, 0.2);
+    transition: right 0.3s ease;
+    z-index: 1001;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  
+  /* Açık hali */
+  .modal.aktif {
+    right: 0;
+    
+  }
+  
+  /* Modal içeriği */
+  .modal-icerik {
+    position: relative;
+  }
+
+  .modal-icerik h2{
+    margin-bottom: 15px;
+  }
+  
+  /* Kapatma butonu */
+  .modal-kapat {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    
+  }
+  
+  /* Açma butonu */
+  .modal-ac-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background-color: #4ea8de;
+    color: white;
+    padding: 10px 14px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+ 
+
+  .modal #favoriListe li {
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: #eee;
+    margin: 5px 0;
+    transition: background 0.3s;
+    list-style: none;
+  }
+
+  .modal #favoriListe li:hover {
+    background-color: #ccc;
+  }
+
+  @media (max-width: 375px) {
+    .search-box {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .search-box input,
+    .search-box button {
+      width: 100%;
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+  
+    .search-box button:last-child {
+      margin-bottom: 0;
+    }
+  
+    .container {
+      width: 95%;
+      padding: 1.2rem;
+      font-size: 0.95rem;
+    }
+  
+    .modal {
+      width: 100%;
+      padding: 1rem;
+    }
+  
+    .modal-ac-button {
+      right: 10px;
+      top: 10px;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+  
   }
